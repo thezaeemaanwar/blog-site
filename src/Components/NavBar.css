@@ -1,0 +1,39 @@
+nav {
+  width: 10%;
+  padding: 30px 4%;
+  box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+  float: left;
+  height: inherit;
+}
+
+.nav-header {
+  text-transform: uppercase;
+  font-weight: 900;
+  opacity: 0.6;
+  text-align: left;
+}
+
+.nav-list {
+  padding: 0;
+}
+
+.nav-item {
+  text-decoration: none;
+  list-style-type: none;
+  text-align: left;
+  font-weight: 800;
+  opacity: 0.4;
+  text-transform: uppercase;
+  line-height: 30px;
+  font-size: 12px;
+  /* mar */
+}
+.selected {
+  font-weight: 900;
+  opacity: 0.8;
+}
+
+.nav-item:hover {
+  opacity: 0.7;
+  cursor: pointer;
+}
