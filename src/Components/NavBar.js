@@ -11,27 +11,17 @@ const NavBar = ({ currentNav, setCurrentNav }) => {
     <nav>
       <div className="nav-header">Categories</div>
       <ul className="nav-list">
-        {navs.map((nav, idx) => {
-          console.log(
-            "nav: ",
-            nav,
-            " , current Nav: ",
-            currentNav,
-            "| ",
-            currentNav === nav
-          );
-          return (
-            <li
-              key={idx}
-              className={`nav-item ${currentNav === nav ? "selected" : ""}`}
-              onClick={() => {
-                changeNav(nav);
-              }}
-            >
-              {nav}
-            </li>
-          );
-        })}
+        {navs.map((nav, idx) => (
+          <li
+            key={idx}
+            className={`nav-item ${currentNav === nav ? "selected" : ""}`}
+            onClick={() => {
+              changeNav(nav);
+            }}
+          >
+            {nav}
+          </li>
+        ))}
       </ul>
     </nav>
   );

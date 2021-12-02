@@ -1,0 +1,61 @@
+.stories-container {
+  display: flex;
+  width: 100%;
+  flex-wrap: wrap;
+}
+
+.story-wrapper {
+  display: flex;
+  width: 40%;
+  height: 200px;
+}
+
+.vertical {
+  flex-direction: column;
+}
+.horizontal {
+  flex-direction: row;
+}
+
+.story-image {
+  width: 45%;
+  height: inherit;
+  border-radius: 10px;
+}
+.story-details {
+  width: 45%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+}
+.story-title {
+  margin: 5px 0px;
+  font-size: 16px;
+  opacity: 0.8;
+  font-weight: 900;
+}
+.story-country {
+  opacity: 0.5;
+  font-weight: 600;
+}
+
+.story-content {
+  opacity: 0.6;
+  font-weight: 700;
+  text-overflow: ellipsis;
+  /* white-space: now?rap; */
+  overflow: hidden;
+}
+
+.time-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.story-time,
+.story-country,
+.story-content {
+  margin: 5px 0px;
+}

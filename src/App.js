@@ -2,13 +2,13 @@ import { useState } from "react";
 import "./App.css";
 import Header from "./Components/Header";
 import NavBar from "./Components/NavBar";
-import Stories from "./Components/Stories";
+import Stories from "./Components/Stories/Stories";
 import Blog from "./Components/Blog";
 import Home from "./Components/Home";
 import All from "./Components/All";
 
 const App = () => {
-  const allPages = ["all", "home", "contact", "about", "stories", "blog"];
+  // const allPages = ["all", "home", "contact", "about", "stories", "blog"];
   const [currentPage, setCurrentPage] = useState("stories");
   return (
     <div className="App">
