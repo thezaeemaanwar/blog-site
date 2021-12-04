@@ -1,12 +1,10 @@
 import "./Header.css";
 import HeaderItem from "./HeaderItem";
 
-const Header = ({ currentNav, setCurrentNav }) => {
-  const headerItems = ["all", "home", "contact", "about", "stories", "blog"];
-
+const Header = ({ navs, currentNav, setCurrentNav }) => {
   return (
     <header className="header">
-      {headerItems.map((item, idx) => (
+      {navs.map((item, idx) => (
         <HeaderItem
           key={idx}
           itemText={item}

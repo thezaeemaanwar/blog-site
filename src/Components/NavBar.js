@@ -1,7 +1,6 @@
 import "./NavBar.css";
 
-const NavBar = ({ currentNav, setCurrentNav }) => {
-  const navs = ["all", "home", "contact", "about", "stories", "blog"];
+const NavBar = ({ navs, currentNav, setCurrentNav }) => {
 
   const changeNav = (nav) => {
     setCurrentNav(nav);
@@ -23,6 +22,14 @@ const NavBar = ({ currentNav, setCurrentNav }) => {
           </li>
         ))}
       </ul>
+      <div
+        className="add-story-btn"
+        onClick={() => {
+          changeNav("addStory");
+        }}
+      >
+        Add Story
+      </div>
     </nav>
   );
 };
