@@ -2,7 +2,7 @@ import "./Stories.css";
 // import "../../Assets/image01.jpg";
 // import image from "./image1.jpg";
 
-const Story = ({ storyData }) => {
+const Story = ({ storyData, index }) => {
   console.log(storyData.image);
   // const image = require(storyData.image).default;
   return (

@@ -15,16 +15,18 @@ const App = () => {
       <h1 className="h1">Blog</h1>
       <div className="main-container">
         <Header currentNav={currentPage} setCurrentNav={setCurrentPage} />
-        <NavBar currentNav={currentPage} setCurrentNav={setCurrentPage} />
-        {currentPage === "stories" ? (
-          <Stories />
-        ) : currentPage === "blog" ? (
-          <Blog />
-        ) : currentPage === "all" ? (
-          <All />
-        ) : currentPage === "home" ? (
-          <Home />
-        ) : null}
+        <div className="bottom-container">
+          <NavBar currentNav={currentPage} setCurrentNav={setCurrentPage} />
+          {currentPage === "stories" ? (
+            <Stories />
+          ) : currentPage === "blog" ? (
+            <Blog />
+          ) : currentPage === "all" ? (
+            <All />
+          ) : currentPage === "home" ? (
+            <Home />
+          ) : null}
+        </div>
       </div>
     </div>
   );
