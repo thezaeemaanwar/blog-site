@@ -2,9 +2,11 @@ import "./Stories.css";
 // import "../../Assets/image01.jpg";
 // import image from "./image1.jpg";
 
-const Story = ({ storyData, index }) => {
-  console.log(storyData.image);
-  // const image = require(storyData.image).default;
+const Story = ({ storyData, setShowMore, setStoryData }) => {
+  const showMoreClick = () => {
+    setShowMore(true);
+    setStoryData(storyData);
+  };
   return (
     <div className={"story-wrapper " + storyData.container}>
       <img
@@ -20,6 +22,14 @@ const Story = ({ storyData, index }) => {
         <h2 className="story-title">{storyData.title}</h2>
         <p className="story-country">{storyData.country}</p>
         <p className="story-content">{storyData.content}</p>
+        <p
+          className="show-more-btn"
+          onClick={() => {
+            showMoreClick();
+          }}
+        >
+          Show More.
+        </p>
       </div>
     </div>
   );
