@@ -15,6 +15,7 @@
 .story-wrapper {
   display: flex;
   width: calc(50% - 40px);
+  z-index: 5;
 }
 
 .vertical {
@@ -26,7 +27,7 @@
 }
 
 .horizontal .story-details {
-  padding: 10px 40px;
+  padding: 0px 40px;
 }
 
 .story-image {
@@ -91,6 +92,9 @@
   font-size: 11px;
 }
 
+.time-wrapper {
+  margin: 10px 0px;
+}
 .story-time {
   font-weight: 700;
   opacity: 0.5;
@@ -101,4 +105,61 @@
 .story-country,
 .story-content {
   margin: 5px 0px;
+}
+
+.show-more-btn {
+  color: #cf726a;
+  margin: 0;
+  font-size: 14px;
+  font-weight: 600;
+  display: inline;
+}
+
+.show-more-btn:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.more-modal {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 50;
+}
+
+.modal-content {
+  background-color: white;
+  width: 40%;
+  height: 80%;
+  z-index: 99;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: scroll;
+}
+
+.modal-content .story-image {
+  width: 100%;
+  height: auto;
+  /* transform: translateY(-42px); */
+}
+
+.modal-content .story-details {
+  height: auto;
+  width: 80%;
+  padding-bottom: 20px;
+}
+
+.modal-content .story-content {
+  /* -webkit-line-clamp: auto; */
+  display: inline;
+  /* overflow: auto; */
 }

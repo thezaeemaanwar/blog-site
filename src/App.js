@@ -3,34 +3,30 @@ import "./App.css";
 import Header from "./Components/Header";
 import NavBar from "./Components/NavBar";
 import AddStory from "./Components/Stories/AddStory";
+import Stories from "./Components/Stories/Stories";
 
 import stories from "./Components/StoriesData";
 
 const App = () => {
-  var prevIndex = 0;
-  const storiesDataUpdated = stories.map((data, idx) => {
-    if (idx === prevIndex || idx === prevIndex + 1) {
-      data.container = "horizontal";
-      if (idx === prevIndex + 1) {
-        prevIndex += 6;
-      }
-    } else {
-      data.container = "vertical";
-    }
-    return data;
-  });
-
-  const routes = ["all", "travel", "food", "peopls", "style", "stories"];
+  const routes = ["all", "travel", "food", "people", "style", "stories"];
   const [currentPage, setCurrentPage] = useState("all");
-  const [allStories, setAllStories] = useState(storiesDataUpdated);
+  const [allStories, setAllStories] = useState(stories);
+  const [filteredStories, setFilteredStories] = useState(stories);
 
-  const getCategoricalSories = () => {
-    const temp = [...allStories];
-    const filtered = temp.filter((story) => {
-      if (story.category === currentPage) return story;
-    });
-    console.log(filtered);
-  };
+  useEffect(() => {
+    if (currentPage === "all") {
+      console.log("FIltered tories in App.js: ", allStories);
+      setFilteredStories(allStories);
+      return;
+    }
+    // const temp = [...allStories];
+    const filtered = allStories.filter(
+      (story) => story.category === currentPage
+    );
+    setFilteredStories(filtered);
+    console.log("FIltered tories in App.js: ", filtered);
+  }, [currentPage, allStories]);
+
   return (
     <div className="App">
       <h1 className="h1">Blog</h1>
@@ -46,11 +42,15 @@ const App = () => {
             currentNav={currentPage}
             setCurrentNav={setCurrentPage}
           />
-          <AddStory
-            navs={routes}
-            storiesList={allStories}
-            setStoriesList={setAllStories}
-          />
+          {currentPage === "addStory" ? (
+            <AddStory
+              navs={routes}
+              storiesList={allStories}
+              setStoriesList={setAllStories}
+            />
+          ) : (
+            <Stories storiesList={filteredStories} />
+          )}
         </div>
       </div>
     </div>

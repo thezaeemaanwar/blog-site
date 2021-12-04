@@ -1,12 +1,20 @@
-import { useRef } from "react";
+import { useState, useRef, useEffect } from "react";
+import "./AddStory.css";
 
 const AddStory = ({ navs, storiesList, setStoriesList }) => {
-  const options = navs.splice(1);
-  console.log(options);
-  const descRef = useRef(0);
-  const titleRef = useRef(0);
+  // const options = ["travel", "food", "people", "style"];
+
+  const [title, setTitle] = useState("");
+  const [country, setCountry] = useState("");
+  const [description, setDescription] = useState("");
+
   const categoryRef = useRef(0);
-  const countryRef = useRef(0);
+  const [validated, setValidated] = useState(false);
+  const [validations, setValidations] = useState({
+    title: true,
+    desc: true,
+    country: true,
+  });
 
   const addStory = (event) => {
     event.preventDefault();
@@ -14,62 +22,113 @@ const AddStory = ({ navs, storiesList, setStoriesList }) => {
       image: require("../../Assets/image3.jpg"),
       emojis: "⚡ 🔥",
       time: "4 hours ago",
-      title: titleRef.current.value,
-      country: countryRef.current.value,
+      title: title,
+      country: country,
       category: categoryRef.current.value,
-      content: descRef.current.value,
+      content: description,
     };
     const temp = [...storiesList];
-    temp.append(obj);
+    temp.push(obj);
     setStoriesList(temp);
+
+    alert("Story Added Successfully!");
+
+    setTitle("");
+    setDescription("");
+    setCountry("");
+    setValidations({ title: true, desc: true, country: true });
   };
+
+  useEffect(() => {
+    const temp = validations;
+    if (title !== "" && /^[a-zA-Z\s]*$/.test(title)) temp.title = true;
+    else temp.title = false;
+    if (country !== "" && /^[a-zA-Z\s]*$/.test(country)) temp.country = true;
+    else temp.country = false;
+    if (description !== "" && description !== null) temp.desc = true;
+    else temp.desc = false;
+
+    setValidations(temp);
+    if (temp.title && temp.desc && temp.country) setValidated(true);
+    else setValidated(false);
+  });
+
   return (
-    <div>
+    <div className="form-wrapper">
       <form
         onSubmit={(e) => {
-          AddStory(e);
+          addStory(e);
         }}
         className="add-story-form"
       >
-        <label className="input-label" for="story-title">
+        <label className="input-label" htmlFor="story-title">
           Title:
         </label>
-        <input
-          className="input-box"
-          type="text"
-          ref={titleRef}
-          name="story-title"
-          placeholder="Enter Story Title Here."
-        />
-        <label className="input-label" for="country-name">
+        <div>
+          <input
+            className="input-box"
+            type="text"
+            value={title}
+            onChange={(e) => {
+              setTitle(e.target.value);
+            }}
+            name="story-title"
+            placeholder="Enter Story Title Here."
+          />
+          {validations.title ? null : (
+            <p className="error-tip">Invalid Title !</p>
+          )}
+        </div>
+        <label className="input-label" htmlFor="country-name">
           Country:
         </label>
-        <input
-          className="input-box"
-          type="text"
-          ref={countryRef}
-          name="country-name"
-          placeholder="Enter Country Name Here."
-        />
-        <label className="input-label" for="story-desc">
+        <div>
+          <input
+            className="input-box"
+            type="text"
+            value={country}
+            onChange={(e) => {
+              setCountry(e.target.value);
+            }}
+            name="country-name"
+            placeholder="Enter Country Name Here."
+          />
+          {validations.country ? null : (
+            <p className="error-tip">Invalid Country !</p>
+          )}
+        </div>
+        <label className="input-label" htmlFor="story-desc">
           Category:
         </label>
-        <select className="category-dropdown">
-          {options.map((op, idx) => (
-            <option key={idx} className="category-option" value="op">
+        <select className="category-dropdown" ref={categoryRef}>
+          {navs.slice(1).map((op, idx) => (
+            <option key={idx} className="category-option" value={op}>
               {op}
             </option>
           ))}
         </select>
-        <label className="input-label" for="story-desc">
+        <label className="input-label" htmlFor="story-desc">
           Description:
         </label>
-        <textarea
-          className="input-box"
-          ref={titleRef}
-          name="story-desc"
-          placeholder="Enter Story Description Here."
-        ></textarea>
+        <div>
+          <textarea
+            className="input-box"
+            value={description}
+            onChange={(e) => {
+              setDescription(e.target.value);
+            }}
+            name="story-desc"
+            placeholder="Enter Story Description Here."
+          ></textarea>
+          {validations.desc ? null : (
+            <p className="error-tip">Description can't be empty!</p>
+          )}
+        </div>
+        <input
+          type="submit"
+          className={`submit-button ${validated ? "enabled" : ""}`}
+          disabled={validated ? "" : "disabled"}
+        />
       </form>
     </div>
   );

@@ -22,7 +22,7 @@
 }
 .bottom-container {
   display: flex;
-  justify-content: space-between;
+  /* justify-co ntent: space-between; */
 }
 .h1 {
   padding: 30px;
