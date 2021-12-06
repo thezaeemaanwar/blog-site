@@ -8,13 +8,11 @@ const AddStory = ({ navs, storiesList, setStoriesList }) => {
   const [country, setCountry] = useState("");
   const [description, setDescription] = useState("");
 
+  const [titleError, setTitleError] = useState(false);
+  const [countryError, setCountryError] = useState(false);
+  const [descriptionError, setDescriptionError] = useState(false);
+
   const categoryRef = useRef(0);
-  const [validated, setValidated] = useState(false);
-  const [validations, setValidations] = useState({
-    title: true,
-    desc: true,
-    country: true,
-  });
 
   const addStory = (event) => {
     event.preventDefault();
@@ -36,22 +34,22 @@ const AddStory = ({ navs, storiesList, setStoriesList }) => {
     setTitle("");
     setDescription("");
     setCountry("");
-    setValidations({ title: true, desc: true, country: true });
   };
 
   useEffect(() => {
-    const temp = validations;
-    if (title !== "" && /^[a-zA-Z\s]*$/.test(title)) temp.title = true;
-    else temp.title = false;
-    if (country !== "" && /^[a-zA-Z\s]*$/.test(country)) temp.country = true;
-    else temp.country = false;
-    if (description !== "" && description !== null) temp.desc = true;
-    else temp.desc = false;
+    if (/^[a-zA-Z\s]*$/.test(title)) setTitleError(false);
+    else setTitleError(true);
+  }, [title, setTitleError]);
 
-    setValidations(temp);
-    if (temp.title && temp.desc && temp.country) setValidated(true);
-    else setValidated(false);
-  });
+  useEffect(() => {
+    if (/^[a-zA-Z\s]*$/.test(country)) setCountryError(false);
+    else setCountryError(true);
+  }, [country, setCountryError]);
+
+  useEffect(() => {
+    if (description !== null) setDescriptionError(false);
+    else setDescriptionError(true);
+  }, [description, setDescriptionError]);
 
   return (
     <div className="form-wrapper">
@@ -75,9 +73,7 @@ const AddStory = ({ navs, storiesList, setStoriesList }) => {
             name="story-title"
             placeholder="Enter Story Title Here."
           />
-          {validations.title ? null : (
-            <p className="error-tip">Invalid Title !</p>
-          )}
+          {titleError ? <p className="error-tip">Invalid Title !</p> : null}
         </div>
         <label className="input-label" htmlFor="country-name">
           Country:
@@ -93,9 +89,7 @@ const AddStory = ({ navs, storiesList, setStoriesList }) => {
             name="country-name"
             placeholder="Enter Country Name Here."
           />
-          {validations.country ? null : (
-            <p className="error-tip">Invalid Country !</p>
-          )}
+          {countryError ? <p className="error-tip">Invalid Country !</p> : null}
         </div>
         <label className="input-label" htmlFor="story-desc">
           Category:
@@ -120,14 +114,32 @@ const AddStory = ({ navs, storiesList, setStoriesList }) => {
             name="story-desc"
             placeholder="Enter Story Description Here."
           ></textarea>
-          {validations.desc ? null : (
+          {descriptionError ? (
             <p className="error-tip">Description can't be empty!</p>
-          )}
+          ) : null}
         </div>
         <input
           type="submit"
-          className={`submit-button ${validated ? "enabled" : ""}`}
-          disabled={validated ? "" : "disabled"}
+          className={`submit-button ${
+            titleError ||
+            descriptionError ||
+            countryError ||
+            title === "" ||
+            country === "" ||
+            description === ""
+              ? ""
+              : "enabled"
+          }`}
+          disabled={
+            titleError ||
+            descriptionError ||
+            countryError ||
+            title === "" ||
+            country === "" ||
+            description === ""
+              ? "disabled"
+              : ""
+          }
         />
       </form>
     </div>

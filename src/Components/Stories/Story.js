@@ -1,6 +1,4 @@
 import "./Stories.css";
-// import "../../Assets/image01.jpg";
-// import image from "./image1.jpg";
 
 const Story = ({ storyData, setShowMore, setStoryData }) => {
   const showMoreClick = () => {

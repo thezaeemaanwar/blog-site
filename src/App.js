@@ -15,16 +15,13 @@ const App = () => {
 
   useEffect(() => {
     if (currentPage === "all") {
-      console.log("FIltered tories in App.js: ", allStories);
       setFilteredStories(allStories);
       return;
     }
-    // const temp = [...allStories];
     const filtered = allStories.filter(
       (story) => story.category === currentPage
     );
     setFilteredStories(filtered);
-    console.log("FIltered tories in App.js: ", filtered);
   }, [currentPage, allStories]);
 
   return (
