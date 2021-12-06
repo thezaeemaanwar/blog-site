@@ -18,11 +18,9 @@
   position: sticky;
   top: 0;
   height: 100vh;
-  /* overflow: scroll; */
 }
 .bottom-container {
   display: flex;
-  /* justify-co ntent: space-between; */
 }
 .h1 {
   padding: 30px;
@@ -31,4 +29,13 @@
   position: fixed;
   top: 0px;
   right: clac(50% - 189px);
+}
+
+::-webkit-scrollbar {
+  width: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #cf726a;
+  border-radius: 3px;
 }

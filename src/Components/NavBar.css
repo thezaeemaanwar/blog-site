@@ -26,7 +26,6 @@ nav {
   text-transform: uppercase;
   line-height: 30px;
   font-size: 12px;
-  /* mar */
 }
 .selected {
   font-weight: 900;
@@ -52,4 +51,10 @@ nav {
   color: white;
   transform: scale(1.05);
   background-color: #cf726a;
+}
+
+@media screen and (max-width: 700px) {
+  nav {
+    width: 30%;
+  }
 }

@@ -2,7 +2,6 @@ import { useState, useRef, useEffect } from "react";
 import "./AddStory.css";
 
 const AddStory = ({ navs, storiesList, setStoriesList }) => {
-  // const options = ["travel", "food", "people", "style"];
 
   const [title, setTitle] = useState("");
   const [country, setCountry] = useState("");

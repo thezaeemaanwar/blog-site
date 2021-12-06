@@ -36,6 +36,14 @@ const Stories = ({ storiesList }) => {
       {showMore && (
         <div className="more-modal">
           <div className="modal-content">
+            <div
+              className="cross-btn"
+              onClick={() => {
+                setShowMore(!showMore);
+              }}
+            >
+              &#10006;
+            </div>
             <img
               src={storyData.image.default}
               alt={storyData.title}

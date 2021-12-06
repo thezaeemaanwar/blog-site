@@ -1,6 +1,4 @@
 .header {
-  /* position: sticky; */
-  /* top: 0; */
   background: white;
   display: flex;
   align-items: center;
@@ -25,4 +23,10 @@
 .selected {
   font-weight: 900;
   opacity: 0.8;
+}
+
+@media screen and (max-width: 700px) {
+  .header-item {
+    padding: 10px 20px;
+  }
 }

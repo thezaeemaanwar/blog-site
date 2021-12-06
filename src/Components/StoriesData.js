@@ -17,7 +17,7 @@ const stories = [
     country: "Iceland",
     category: "travel",
     content:
-      "Iceland was magical. With only a few days in the country, I was limited in time but what I did see completely bowled me over. Autumn turned the landscape into a carpet of ochres and reds and patches of mossy green; the weather was so unpredictable that I kept having to remind myself I was in the same country from one minute to the next. Driving the Golden Circle (to Gullfoss, Thingvellir and Geysir) in a day brought some unexpected weather karma too – buckets of sideways sleet and rain would accompany the drive from one place to another, with the sun bursting through the moment the car stopped and it was time to get out.",
+      "Iceland was magical. With only a few days in the country, I was limited in time but what I did see completely bowled me over. Autumn turned the landscape into a carpet of ochres and reds and patches of mossy green; the weather was so unpredictable that I kept having to remind myself I was in the same country from one minute to the next. Driving the Golden Circle (to Gullfoss, Thingvellir and Geysir) in a day brought some unexpected weather karma too – buckets of sideways sleet.",
   },
   {
     image: require("../Assets/image3.jpg"),
