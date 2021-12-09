@@ -2,16 +2,14 @@ import { useState, useRef, useEffect } from "react";
 import "./AddStory.css";
 
 const AddStory = ({ navs, storiesList, setStoriesList }) => {
-
   const [title, setTitle] = useState("");
   const [country, setCountry] = useState("");
   const [description, setDescription] = useState("");
+  const [category, setCategory] = useState("travel");
 
   const [titleError, setTitleError] = useState(false);
   const [countryError, setCountryError] = useState(false);
   const [descriptionError, setDescriptionError] = useState(false);
-
-  const categoryRef = useRef(0);
 
   const addStory = (event) => {
     event.preventDefault();
@@ -21,7 +19,7 @@ const AddStory = ({ navs, storiesList, setStoriesList }) => {
       time: "4 hours ago",
       title: title,
       country: country,
-      category: categoryRef.current.value,
+      category: category,
       content: description,
     };
     const temp = [...storiesList];
@@ -93,10 +91,16 @@ const AddStory = ({ navs, storiesList, setStoriesList }) => {
         <label className="input-label" htmlFor="story-desc">
           Category:
         </label>
-        <select className="category-dropdown" ref={categoryRef}>
-          {navs.slice(1).map((op, idx) => (
-            <option key={idx} className="category-option" value={op}>
-              {op}
+        <select
+          className="category-dropdown"
+          value={category}
+          onChange={(e) => {
+            setCategory(e.target.value);
+          }}
+        >
+          {navs.slice(1).map((op) => (
+            <option key={op.id} className="category-option" value={op}>
+              {op.text}
             </option>
           ))}
         </select>
@@ -139,6 +143,7 @@ const AddStory = ({ navs, storiesList, setStoriesList }) => {
               ? "disabled"
               : ""
           }
+          value="Add Story !"
         />
       </form>
     </div>

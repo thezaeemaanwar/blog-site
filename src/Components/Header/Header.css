@@ -9,6 +9,8 @@
 }
 
 .header-item {
+  text-decoration: none;
+  color: black;
   text-transform: uppercase;
   padding: 10px 40px;
   opacity: 0.4;

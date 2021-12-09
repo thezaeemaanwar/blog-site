@@ -1,53 +1,61 @@
 import { useEffect, useState } from "react";
+import { Route, Routes, useLocation } from "react-router-dom";
 import "./App.css";
-import Header from "./Components/Header";
-import NavBar from "./Components/NavBar";
+import Header from "./Components/Header/Header";
+import NavBar from "./Components/NavBar/NavBar";
 import AddStory from "./Components/Stories/AddStory";
 import Stories from "./Components/Stories/Stories";
 
 import stories from "./Components/StoriesData";
 
 const App = () => {
-  const routes = ["all", "travel", "food", "people", "style", "stories"];
-  const [currentPage, setCurrentPage] = useState("all");
+  const routes = [
+    { text: "travel", id: 1 },
+    { text: "food", id: 2 },
+    { text: "people", id: 3 },
+    { text: "style", id: 4 },
+    { text: "stories", id: 5 },
+  ];
   const [allStories, setAllStories] = useState(stories);
-  const [filteredStories, setFilteredStories] = useState(stories);
-
-  useEffect(() => {
-    if (currentPage === "all") {
-      setFilteredStories(allStories);
-      return;
-    }
-    const filtered = allStories.filter(
-      (story) => story.category === currentPage
-    );
-    setFilteredStories(filtered);
-  }, [currentPage, allStories]);
 
   return (
     <div className="App">
       <h1 className="h1">Blog</h1>
       <div className="main-container">
-        <Header
-          navs={routes}
-          currentNav={currentPage}
-          setCurrentNav={setCurrentPage}
-        />
+        <Header />
         <div className="bottom-container">
-          <NavBar
-            navs={routes}
-            currentNav={currentPage}
-            setCurrentNav={setCurrentPage}
-          />
-          {currentPage === "addStory" ? (
-            <AddStory
-              navs={routes}
-              storiesList={allStories}
-              setStoriesList={setAllStories}
+          <NavBar />
+          <Routes>
+            <Route
+              exact
+              path="/"
+              element={<Stories storiesList={allStories} />}
             />
-          ) : (
-            <Stories storiesList={filteredStories} />
-          )}
+            {routes.map((route) => (
+              <Route
+                key={route.id}
+                path={route.text}
+                element={
+                  <Stories
+                    storiesList={allStories.filter(
+                      (story) => story.category === route.text
+                    )}
+                    r={route.text}
+                  />
+                }
+              />
+            ))}
+            <Route
+              path="AddStory"
+              element={
+                <AddStory
+                  navs={routes}
+                  storiesList={allStories}
+                  setStoriesList={setAllStories}
+                />
+              }
+            />
+          </Routes>
         </div>
       </div>
     </div>

@@ -15,9 +15,12 @@ nav {
 
 .nav-list {
   padding: 0px 40px;
+  display: flex;
+  flex-direction: column;
 }
 
 .nav-item {
+  color: black;
   text-decoration: none;
   list-style-type: none;
   text-align: left;
@@ -38,18 +41,24 @@ nav {
 }
 
 .add-story-btn {
+  text-decoration: none;
+  color: #cf726a;
   background-color: white;
   box-shadow: 2px 2px 3px 1px rgba(0, 0, 0, 0.2);
   font-weight: 700;
   list-style-type: none;
   padding: 10px 15px;
   border-radius: 10px;
-  margin: 0px 20px 20px 20px;
 }
 .add-story-btn:hover {
   cursor: pointer;
   color: white;
   transform: scale(1.05);
+  background-color: #cf726a;
+}
+
+.clicked {
+  color: white;
   background-color: #cf726a;
 }
 

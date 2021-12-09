@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import stories from "../StoriesData";
 import "./Stories.css";
 import Story from "./Story";
 
@@ -6,6 +7,8 @@ const Stories = ({ storiesList }) => {
   var prevIndex = 0;
 
   const [stories, setStories] = useState([]);
+  const [showMore, setShowMore] = useState(false);
+  const [storyData, setStoryData] = useState({});
 
   useEffect(() => {
     const storiesDataUpdated = storiesList.map((data, idx) => {
@@ -21,18 +24,23 @@ const Stories = ({ storiesList }) => {
     });
     setStories(storiesDataUpdated);
   }, [storiesList]);
-  const [showMore, setShowMore] = useState(false);
-  const [storyData, setStoryData] = useState({});
+
   return (
     <div className="stories-container">
-      {stories.map((story, idx) => (
-        <Story
-          storyData={story}
-          setShowMore={setShowMore}
-          setStoryData={setStoryData}
-          key={idx}
-        />
-      ))}
+      {storiesList.length === 0 ? (
+        <div className="no-stories-area">
+          No Stories Added for this category !
+        </div>
+      ) : (
+        stories.map((story, idx) => (
+          <Story
+            storyData={story}
+            setShowMore={setShowMore}
+            setStoryData={setStoryData}
+            key={idx}
+          />
+        ))
+      )}
       {showMore && (
         <div className="more-modal">
           <div className="modal-content">
@@ -71,6 +79,10 @@ const Stories = ({ storiesList }) => {
       )}
     </div>
   );
+};
+
+Stories.defaultProps = {
+  storiesList: [],
 };
 
 export default Stories;
