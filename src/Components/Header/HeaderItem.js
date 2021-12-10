@@ -1,4 +1,4 @@
-import "./Header.css";
+import "Components/Header/Header.css";
 import { NavLink } from "react-router-dom";
 
 const HeaderItem = ({ itemText }) => {
@@ -12,6 +12,10 @@ const HeaderItem = ({ itemText }) => {
       {itemText}
     </NavLink>
   );
+};
+
+HeaderItem.defaultProps = {
+  itemText: "all",
 };
 
 export default HeaderItem;

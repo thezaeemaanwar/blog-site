@@ -1,8 +1,9 @@
-import "./NavBar.css";
-import { Link, NavLink } from "react-router-dom";
+import "Components/NavBar/NavBar.css";
+import { NavLink } from "react-router-dom";
 
 const NavBar = () => {
   const navs = [
+    { text: "all", id: 0 },
     { text: "travel", id: 1 },
     { text: "food", id: 2 },
     { text: "people", id: 3 },

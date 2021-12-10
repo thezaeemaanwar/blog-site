@@ -1,8 +1,9 @@
-import "./Header.css";
-import HeaderItem from "./HeaderItem";
+import "Components/Header/Header.css";
+import HeaderItem from "Components/Header/HeaderItem";
 
 const Header = () => {
   const navs = [
+    { text: "all", id: 0 },
     { text: "travel", id: 1 },
     { text: "food", id: 2 },
     { text: "people", id: 3 },
@@ -17,6 +18,5 @@ const Header = () => {
     </header>
   );
 };
-
 
 export default Header;

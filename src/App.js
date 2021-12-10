@@ -1,15 +1,18 @@
-import { useEffect, useState } from "react";
-import { Route, Routes, useLocation } from "react-router-dom";
-import "./App.css";
-import Header from "./Components/Header/Header";
-import NavBar from "./Components/NavBar/NavBar";
-import AddStory from "./Components/Stories/AddStory";
-import Stories from "./Components/Stories/Stories";
+import "App.css";
+import { useState } from "react";
+import { Route, Routes } from "react-router-dom";
 
-import stories from "./Components/StoriesData";
+import NotFound from "Components/404/404";
+import Header from "Components/Header/Header";
+import NavBar from "Components/NavBar/NavBar";
+import AddStory from "Components/Stories/AddStory";
+import Stories from "Components/Stories/Stories";
+
+import stories from "Data/StoriesData";
 
 const App = () => {
   const routes = [
+    { text: "all", id: 0 },
     { text: "travel", id: 1 },
     { text: "food", id: 2 },
     { text: "people", id: 3 },
@@ -26,21 +29,20 @@ const App = () => {
         <div className="bottom-container">
           <NavBar />
           <Routes>
-            <Route
-              exact
-              path="/"
-              element={<Stories storiesList={allStories} />}
-            />
+            <Route path="*" element={<NotFound />} />
             {routes.map((route) => (
               <Route
                 key={route.id}
                 path={route.text}
                 element={
                   <Stories
-                    storiesList={allStories.filter(
-                      (story) => story.category === route.text
-                    )}
-                    r={route.text}
+                    storiesList={
+                      route.text === "all"
+                        ? allStories
+                        : allStories.filter(
+                            (story) => story.category === route.text
+                          )
+                    }
                   />
                 }
               />
@@ -54,6 +56,11 @@ const App = () => {
                   setStoriesList={setAllStories}
                 />
               }
+            />
+            <Route
+              exact
+              path="/"
+              element={<Stories storiesList={allStories} />}
             />
           </Routes>
         </div>

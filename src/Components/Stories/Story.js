@@ -1,4 +1,5 @@
-import "./Stories.css";
+import "Components/Stories/Stories.css";
+import PropTypes from "prop-types";
 
 const Story = ({ storyData, setShowMore, setStoryData }) => {
   const showMoreClick = () => {
@@ -31,6 +32,24 @@ const Story = ({ storyData, setShowMore, setStoryData }) => {
       </div>
     </div>
   );
+};
+
+Story.propTypes = {
+  setShowMore: PropTypes.func.isRequired,
+  setStoryData: PropTypes.func.isRequired,
+  storyData: PropTypes.object,
+};
+
+Story.defaultProps = {
+  storyData: {
+    image: require("Assets/image3.jpg"),
+    emojis: "⚡ 🔥",
+    time: "4 hours ago",
+    title: "",
+    country: "",
+    category: "",
+    content: "",
+  },
 };
 
 export default Story;

@@ -1,5 +1,6 @@
-import { useState, useRef, useEffect } from "react";
-import "./AddStory.css";
+import { useState, useEffect } from "react";
+import "Components/Stories/AddStory";
+import PropTypes from "prop-types";
 
 const AddStory = ({ navs, storiesList, setStoriesList }) => {
   const [title, setTitle] = useState("");
@@ -148,6 +149,24 @@ const AddStory = ({ navs, storiesList, setStoriesList }) => {
       </form>
     </div>
   );
+};
+
+AddStory.propTypes = {
+  navs: PropTypes.array,
+  storiesList: PropTypes.array,
+  setStoriesList: PropTypes.func.isRequired,
+};
+
+AddStory.defaultProps = {
+  navs: [
+    { text: "all", id: 0 },
+    { text: "travel", id: 1 },
+    { text: "food", id: 2 },
+    { text: "people", id: 3 },
+    { text: "style", id: 4 },
+    { text: "stories", id: 5 },
+  ],
+  storiesList: [],
 };
 
 export default AddStory;

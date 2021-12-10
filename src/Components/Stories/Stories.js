@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
-import stories from "../StoriesData";
-import "./Stories.css";
-import Story from "./Story";
+import "Components/Stories/Stories.css";
+import Story from "Components/Stories/Story";
 
 const Stories = ({ storiesList }) => {
   var prevIndex = 0;
